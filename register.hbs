@@ -1,0 +1,61 @@
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<meta name="google-signin-client_id" content="443114871654-3j3uucbvhif1b1f8ss4o2jrdom53cj62.apps.googleusercontent.com">
+<script>
+function onSignIn(googleUser) {
+  var profile = googleUser.getBasicProfile();
+  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+  console.log('Name: ' + profile.getName());
+  console.log('Image URL: ' + profile.getImageUrl());
+  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}
+</script>
+<div class="col-md-8 col-md-offset-2">
+    <h2>Register new account</h2>
+    <form class="form-horizontal" role="form" id="reg-form">
+        <div class="form-group mt">
+            <div class="col-sm-10 col-sm-offset-2">
+            <div class="col-sm-4">
+                <label for="inputUsername" class="control-label">Username</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="text" class="form-control input-lg required" id="inputUsername" placeholder="@username">
+            </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+            <div class="col-sm-4">
+                <label for="inputPassword" class="control-label">Password</label>
+            </div>
+            <div class="col-sm-9">
+                <input type="password" class="form-control input-lg required" id="inputPassword"
+                       placeholder="Password">
+            </div>
+        </div>
+		 <div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+            <div class="col-sm-4">
+                <label for="inputAccountType" class="control-label" id = "inputAccountType">Account Type</label>
+            </div>
+            <div class="col-sm-10" style="color:black;">
+                <input type="checkbox" id = "inputAccountType" value = "Creator"> Creator <input type = "checkbox" name="accountType" value = "Contributor" > Contributor
+            </div>
+        </div>
+		</div>
+		<div class="form-group">
+            <div class="col-sm-10 col-sm-offset-2">
+			<div class = "col-sm-3">
+               <button type="submit" class="btn btn-warning btn-lg">Create Account</button>
+	        </div>
+            <div class = "col-sm-9">			
+                <div class="g-signin2" data-onsuccess="onSignIn" onClick = "register();">
+				<script>
+				function register(){
+				 $(location).attr('href', '/feed' ); // Redirect to logged in page
+				 }
+				 </script>
+				</div>				
+            </div>
+			</div>
+    </form>
+</div>
