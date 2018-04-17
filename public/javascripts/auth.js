@@ -11,10 +11,12 @@ $(document).ready(
                 dataType: 'json',
                 data: {
                     'user_name': event.target.inputUsername.value,
-                    'password': event.target.inputPassword.value
+                    'password': event.target.inputPassword.value,
+					'account_type': event.target.inputAccountType.value
                 },
                 success: function(token){
-		 $(location).attr('href', '/feed' );	// Redirect to a login page
+		 $(location).attr('href', '/feed' );			 // Redirect to a login page
+		 window.alert("Account Successfully Created!");
                 },
                 error: function(errMsg) {
                     swal(
@@ -37,7 +39,9 @@ $(document).ready(
                 },
                 success: function(token){
                      $(location).attr('href', '/feed' ); // Redirect to logged in page
-                },
+					 $('#userNameTag').replaceWith(event.target.inputUsername.value);
+                     window.alert("Logged in Successfully");
+				},
                 error: function(errMsg) {
                     swal(
                         'Oops...',
