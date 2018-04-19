@@ -43,4 +43,15 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+var request = require('supertest');
+request(app) .get('/getComments') .expect('Content-Type', /json/) .expect(200) .end(function(err, res) { if (err) throw err; });
+
+
+var chai = require('chai'); var should = chai.should();
+request(app) .get('/getComments') .expect('Content-Type', /json/) .expect(200) .expect(function(res){ res.body.should.be.a('array'); }) .end(function(err, res) { if (err) throw err; });
+
+
+request(app) .get('/getComments') .expect('Content-Type', /json/) .expect(200) .expect(function(res){ res.body.should.be.a('array'); res.body[0].should.have.property('comment'); }) .end(function(err, res) { if (err) throw err; });
+
+
 module.exports = app;
